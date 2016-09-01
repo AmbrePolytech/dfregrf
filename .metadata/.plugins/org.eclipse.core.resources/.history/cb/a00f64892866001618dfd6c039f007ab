@@ -1,0 +1,5 @@
+package firmwarecomparingtool;
+
+public class Sha1Comparison {
+
+}

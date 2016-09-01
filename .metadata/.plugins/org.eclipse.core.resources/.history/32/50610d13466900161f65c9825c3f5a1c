@@ -1,0 +1,325 @@
+Log
+
+Suspect : PN-182427-modified.bin.
+
+The suspect file couldn't be read.
+
+Suspect : PN-182427-modified.bin.
+
+=======================
+
+Lenght Comparison Started
+
+=======================
+
+Length Comparison between the base : Firmwares/PN-182427.bin and the suspect : PN-182427-modified.bin.
+There is no length modification
+
+Length Comparison between the base : Firmwares/PN-182429.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-384409.bin and the suspect : PN-182427-modified.bin.
+The modification is an addition
+
+Length Comparison between the base : Firmwares/PN-384410.bin and the suspect : PN-182427-modified.bin.
+The modification is an addition
+
+Length Comparison between the base : Firmwares/PN-348075.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-348076.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-375337.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-375341.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-386085.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-386086.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-264890.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-264891.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-297420.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-297422.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-308131.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-308132.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-310463.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-310465.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-324609.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/PN-324610.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+Length Comparison between the base : Firmwares/s7h0125x.hsp and the suspect : PN-182427-modified.bin.
+The modification is an addition
+
+=======================
+
+MD5 Comparison Started
+
+=======================
+
+MD5 Comparison between the base : Firmwares/PN-182427.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 452aa5b9d45c011e612aaf72f4e71269
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-182429.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : f6e723e61b4009ec4819781710778e2d
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-384409.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : bb8f530e73ed95e8573f30078d2127c5
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-384410.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 81b6ad052ff111f234aacf0843f397d2
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-348075.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 2cf00936c9ebd62ff0317e6c3be4478c
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-348076.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : c3d2877627241715b60c367f0d656c07
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-375337.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : d63f1c72a1d1b3a9b832087795c6c885
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-375341.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : ae7fc4dfb39fd398ed6ea9e4cb853955
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-386085.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : ab9f8458c072811cbcc37d026c2f9c84
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-386086.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 7df5a66711ff457c2249c707ed5809c0
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-264890.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 4d3f70bea9e36134edf60f15803c42be
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-264891.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 37d877044b27ec035fb4a0aa586464b3
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-297420.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 3fce982a5756442e626e2882d83589b7
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-297422.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 880ff890053bf9e7eff5efbff985cccb
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-308131.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : d825b6d2e6defdde735613747c157da7
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-308132.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 8f5c11695ce356bc7ee35aec56199d20
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-310463.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 51a73cd3d74749b6b74b8544946f1235
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-310465.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 10cdb9100a84080120fef3155374a8f3
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-324609.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 0cae639077891621a6bb971f26158929
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/PN-324610.bin and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : e88c73d94003e892eb51ad848574e2ce
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+MD5 Comparison between the base : Firmwares/s7h0125x.hsp and the suspect : PN-182427-modified.bin.
+There is a MD5 hash modification.
+Base : 467ee60deab700d23a5869668ce05d8f
+Suspect : 21dd071f7bbf6314d660acb91fcff770
+
+=======================
+
+SHA1 Comparison Started
+
+=======================
+
+SHA1 Comparison between the base : Firmwares/PN-182427.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 3cb4b181da20e6fe8f27a1932398bcb6347667c5
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-182429.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 0b71241f4a3c01abc3547658589e7d6ccf9ed394
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-384409.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : a3a5e230b2efd05f82ea6a59d22aea0c52985f09
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-384410.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 9423e0d0f892cc13e261711dbb8ac1a4c21fdf97
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-348075.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : fce001b76964618f503d2162f5595a0dc3f15ac8
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-348076.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 061decbc6161df569ef82ffa52028250e166ec57
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-375337.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : b2ef7253102fb744f311cdfe72feca522965ac94
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-375341.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 9891e52eed001cc0e073a7d2e6b12d220922dfaf
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-386085.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 4ac6c1663357042fba18637e11741196cfe82d58
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-386086.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 5edd3acfc65226c1af7bf7009157227e72e05790
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-264890.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : d42b9f841bb44f8141ea4e52f4f770ce2e1bf782
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-264891.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 98c37fa3c135118f1d45a1e522cb35e035cb83f6
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-297420.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 5540d0455abcfc9e5d592379cbc48cef4b1ea94e
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-297422.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 379527db9bb1ee4f86dfe3605b76fce3005ad5d6
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-308131.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 75df58c1bfa09710bf00b5a13a8421c8ca5a61ca
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-308132.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 6682558b52be50e600a3ba4defd879c2fa605c7b
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-310463.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : dda4039648b1d59d879580911fb58db8b5a4d308
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-310465.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : fd04cc8e38f1d06719bb6dbc2b1bbfd8de4791be
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-324609.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 58c4a25358186bb816160863d26172277eabca48
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/PN-324610.bin and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 837a0ab8f2520e75e993419aff9f2c714e958d87
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+SHA1 Comparison between the base : Firmwares/s7h0125x.hsp and the suspect : PN-182427-modified.bin.
+There is a SHA1 hash modification.
+Base : 824e113cac24ed4304d478ec8cbb803105518c87
+Suspect : 0e0280929696e02199cdb28eb48350d94740a706
+
+Baseline updated.
+
+=======================
+
+Lenght Comparison Started
+
+=======================
+
+Length Comparison between the base : Firmwares/PN-182427.bin and the suspect : PN-182427-modified.bin.
+There is no length modification
+
+Length Comparison between the base : Firmwares/PN-182429.bin and the suspect : PN-182427-modified.bin.
+The modification is a deletion
+
+=======================
+
+Byte Comparison Started
+
+=======================
+
+Byte Comparison between the base : Firmwares/PN-182427.bin and the suspect : PN-182427-modified.bin.
+There are 2 byte modifications, the two firmware images are the same at 99.99993%.
+
+Byte Comparison between the base : Firmwares/PN-182429.bin and the suspect : PN-182427-modified.bin.
+There are 2681959 byte modifications, the two firmware images are the same at 8.004897%.
+

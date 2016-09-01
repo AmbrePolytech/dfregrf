@@ -1,0 +1,11 @@
+package firmwarecomparingtool;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Database db = new Database("jdbc:mysql://localhost/db_firmware","root","mysql");
+		//db.write("1","2","3","4","5","6");
+		db.read();
+	}
+
+}

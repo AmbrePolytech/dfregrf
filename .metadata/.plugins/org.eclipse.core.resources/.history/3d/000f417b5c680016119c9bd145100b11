@@ -1,0 +1,156 @@
+package firmwarecomparingtool;
+
+import java.awt.event.ActionEvent;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.AbstractAction;
+
+public class Controller {
+	
+	protected Model m;
+	protected View v;
+	
+	public Controller(Model m, View v) {
+		super();
+		this.m = m;
+		this.v = v;
+		ActionLength aLength = new ActionLength();
+		ActionMd5 aMd5 = new ActionMd5();
+		ActionSha1 aSha1 = new ActionSha1();
+		ActionByte aByte = new ActionByte();
+		ActionOk aOk = new ActionOk();
+		m.addObserver(aLength);
+		m.addObserver(aMd5);
+		m.addObserver(aSha1);
+		m.addObserver(aByte);
+		m.addObserver(aOk);
+		v.getbLength().setAction(aLength);
+		v.getbMd5().setAction(aMd5);
+		v.getbSha1().setAction(aSha1);
+		v.getbByte().setAction(aByte);
+		v.getbSuspect().setAction(aOk);
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionLength extends AbstractAction implements Observer {
+		
+		public ActionLength() {
+			super();
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				LengthComparison lC = new LengthComparison(it.next(),m.suspect);
+				lC.compare();
+				v.gettMsg().append(lC.msg);
+			}
+		}
+
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Length Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionMd5 extends AbstractAction implements Observer {
+
+		public ActionMd5() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				Md5Comparison mC = new Md5Comparison(it.next(),m.suspect);
+				mC.compare();
+				v.gettMsg().append(mC.msg);
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("MD5 Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionSha1 extends AbstractAction implements Observer {
+
+		public ActionSha1() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				Sha1Comparison sC = new Sha1Comparison(it.next(),m.suspect);
+				sC.compare();
+				v.gettMsg().append(sC.msg);
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("SHA1 Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionByte extends AbstractAction implements Observer {
+
+		public ActionByte() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				ByteComparison bC = new ByteComparison(it.next(),m.suspect);
+				bC.compare();
+				v.gettMsg().append(bC.msg);
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Byte Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionOk extends AbstractAction implements Observer {
+
+		public ActionOk() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			m.setSuspect(new Firmware(v.getpSuspect().getText()));
+			v.getbByte().setEnabled(true);
+			v.getbLength().setEnabled(true);
+			v.getbMd5().setEnabled(true);
+			v.getbSha1().setEnabled(true);
+			v.gettMsg().append("Suspect : "+v.getpSuspect().getText()+".\n\n");
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Suspect : "+v.getpSuspect().getText()+".\n\n");
+		}
+		
+	}
+}

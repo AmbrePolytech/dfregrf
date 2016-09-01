@@ -1,0 +1,17 @@
+package firmwarecomparingtool;
+
+public class Comparison {
+	protected Firmware first;
+	protected Firmware second;
+	protected Boolean value;
+	protected String msg;
+	
+	public Comparison(Firmware f, Firmware s){
+		this.first = f;
+		this.second = s;
+	}
+	
+	public void compare(){
+		
+	}
+}

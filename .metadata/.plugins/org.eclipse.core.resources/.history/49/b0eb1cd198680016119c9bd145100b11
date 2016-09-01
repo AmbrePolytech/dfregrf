@@ -1,0 +1,98 @@
+package firmwarecomparingtool;
+
+
+import java.awt.Dimension;
+
+import javax.swing.*;
+
+@SuppressWarnings("serial")
+public class View extends JFrame {
+	protected JButton bLength;
+	protected JButton bMd5;
+	protected JButton bSha1;
+	protected JButton bByte;
+	protected JButton bSuspect;
+	protected JButton bText;
+	
+	protected JTextField pSuspect;
+	
+	protected JTextArea tMsg;
+
+	public View() {
+		super();
+		JPanel pan = new JPanel();
+		this.bLength = new JButton("Length");
+		this.bLength.setText("Length");
+		this.bLength.setEnabled(false);
+		this.bMd5 = new JButton("MD5");
+		this.bMd5.setText("MD5");
+		this.bMd5.setEnabled(false);
+		this.bSha1 = new JButton("SHA1");
+		this.bSha1.setText("SHA1");
+		this.bSha1.setEnabled(false);
+		this.bByte = new JButton("Byte");
+		this.bByte.setText("Byte");
+		this.bByte.setEnabled(false);
+		this.pSuspect = new JTextField("Suspect path");
+		this.pSuspect.setPreferredSize(new Dimension(175,25));
+		this.bSuspect = new JButton("OK");
+		this.bSuspect.setText("OK");
+		this.bText = new JButton("Text Export");
+		this.bText.setText("Text Export");
+		this.tMsg = new JTextArea("Log\n\n",20,75);
+		//this.tMsg.setPreferredSize(new Dimension(700,400));
+		this.tMsg.setEditable(false);
+		this.tMsg.setLineWrap(true);
+		JScrollPane scroll = new JScrollPane (this.tMsg);
+	    scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	    scroll.setBounds(10,60,700,400);
+		
+		pan.add(this.pSuspect);
+		pan.add(this.bSuspect);
+		pan.add(this.bLength);
+		pan.add(this.bMd5);
+		pan.add(this.bSha1);
+		pan.add(this.bByte);
+		//pan.add(this.tMsg);
+		pan.add(scroll);
+		
+		this.add(pan);
+		this.setSize(900, 500);
+		this.setVisible(true);
+	}
+
+	public JButton getbSuspect() {
+		return bSuspect;
+	}
+
+	public JButton getbLength() {
+		return bLength;
+	}
+
+	public JButton getbMd5() {
+		return bMd5;
+	}
+
+	public JButton getbSha1() {
+		return bSha1;
+	}
+
+	public JButton getbByte() {
+		return bByte;
+	}
+
+	public JTextField getpSuspect() {
+		return pSuspect;
+	}
+
+	public JTextArea gettMsg() {
+		return tMsg;
+	}
+	
+	public static class Test {
+		public static void main(String[] args) {
+			View v = new View();
+		}
+	}
+}

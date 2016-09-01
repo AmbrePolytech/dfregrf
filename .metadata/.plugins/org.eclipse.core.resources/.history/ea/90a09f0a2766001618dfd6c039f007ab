@@ -1,0 +1,25 @@
+package firmwarecomparingtool;
+
+public class LengthComparison extends Comparison{
+
+	public LengthComparison(Firmware b, Firmware s) {
+		super(b, s);
+	}
+
+	@Override
+	public void compare() {
+		if(this.base.length != this.suspect.length){
+			this.setValue(false);
+			if (this.base.length < this.suspect.length){
+				this.setMsg("The modification is an addition\n");
+			} else {
+				this.setMsg("The modification is a deletion\n");
+			}
+		} else {
+			this.setValue(true);
+			this.setMsg("There is no length modification\n");
+		}
+	}
+
+	
+}

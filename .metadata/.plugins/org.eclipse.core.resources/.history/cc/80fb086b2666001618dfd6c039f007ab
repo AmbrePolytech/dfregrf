@@ -1,0 +1,18 @@
+package firmwarecomparingtool;
+
+public class LengthComparison extends Comparison{
+
+	public LengthComparison(Firmware b, Firmware s) {
+		super(b, s);
+	}
+
+	@Override
+	public void compare() {
+		if(this.base.length > this.suspect.length){
+			this.setValue(False);
+			
+		}
+	}
+
+	
+}

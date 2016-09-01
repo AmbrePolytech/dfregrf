@@ -1,0 +1,35 @@
+package firmwarecomparingtool;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class Main {
+
+	public static void main(String[] args) {
+		//Database db = new Database("jdbc:mysql://localhost/db_firmware","root","mysql");
+		//db.write("1","2","3","4","5","6");
+		//db.read();
+		//System.out.println(db.createBaseline());
+		
+//		try {
+//			FileInputStream f = new FileInputStream("Firmwares/PN-182427.bin");
+//			System.out.println(f.read());
+//			System.out.println(f.read());
+//			f.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+		Model m = new Model();
+		View v = new View();
+		Controller c = new Controller(m,v);
+		
+	}	
+}

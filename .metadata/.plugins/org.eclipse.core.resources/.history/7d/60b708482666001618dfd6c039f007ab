@@ -1,0 +1,49 @@
+package firmwarecomparingtool;
+
+public class Comparison {
+	protected Firmware base;
+	protected Firmware second;
+	protected Boolean value;
+	protected String msg;
+	
+	public Comparison(Firmware f, Firmware s){
+		this.base = f;
+		this.second = s;
+	}
+	
+	public void compare(){
+		
+	}
+
+	public Firmware getFirst() {
+		return base;
+	}
+
+	public void setFirst(Firmware first) {
+		this.base = first;
+	}
+
+	public Firmware getSecond() {
+		return second;
+	}
+
+	public void setSecond(Firmware second) {
+		this.second = second;
+	}
+
+	public Boolean getValue() {
+		return value;
+	}
+
+	public void setValue(Boolean value) {
+		this.value = value;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+}

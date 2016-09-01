@@ -1,0 +1,49 @@
+package firmwarecomparingtool;
+
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.Statement;
+
+import com.mysql.jdbc.*;
+
+
+public class Database {
+
+	private String url; //"jdbc:mysql://localhost/bdd_test"
+	private String login; //"root"
+	private String passwd; //"mysql"
+	
+	public Database(String u, String l, String p){
+		super();
+		this.url = u;
+		this.login = l;
+		this.passwd = p;
+	}
+	
+	public void write(String name){
+		//access informations to the database
+
+		Connection cn = null;
+		Statement st = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection(this.url, this.login, this.passwd);
+			st = cn.createStatement();
+			String sql = "insert into test (nom) values ('"+ name + "')";
+			
+			st.executeUpdate(sql);
+		} catch (SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				st.close();
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+}

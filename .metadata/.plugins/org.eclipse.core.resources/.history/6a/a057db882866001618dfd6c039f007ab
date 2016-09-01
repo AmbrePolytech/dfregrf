@@ -1,0 +1,20 @@
+package firmwarecomparingtool;
+
+public class Md5Comparison extends Comparison {
+
+	public Md5Comparison(Firmware b, Firmware s) {
+		super(b, s);
+	}
+
+	@Override
+	public void compare() {
+		if (this.base.md5.equalsIgnoreCase(this.suspect.md5)){
+			this.setValue(true);
+			this.setMsg("There is no md5 hash modification.");
+		} else {
+			this.setValue(false);
+			this.setMsg("There is a md5 hash modification.\nBase : " + this.base.md5 +"\nSuspect : " + this.suspect.md5 + "\n");
+		}
+	}
+
+}
