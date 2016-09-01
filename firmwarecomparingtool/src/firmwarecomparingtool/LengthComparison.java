@@ -1,12 +1,30 @@
 package firmwarecomparingtool;
 
+/**
+ * The LengthComparison class performs the lenght comparison of two Firmwares
+ * @author Ambre Person
+ *
+ */
+
 public class LengthComparison extends Comparison {
 
+	/**
+	 * The LengthComparison constructor creates a new LengthComparison using two Firmwares, it is a Comparison child
+	 * @param b : base Firmware
+	 * @param s : suspect Firmware
+	 * The msg is modified to specify that the Comparison is a LengthComparison
+	 */
+	
 	public LengthComparison(Firmware b, Firmware s) {
 		super(b, s);
 		this.msg = "Length "+ this.msg;
 	}
 
+	/**
+	 * The compare method compares the length of the base and the suspect Firmwares and updates the msg with the result of the comparison
+	 * It also updates the score value and the boolean value
+	 */
+	
 	@Override
 	public void compare() {
 		if(this.base.length != this.suspect.length){

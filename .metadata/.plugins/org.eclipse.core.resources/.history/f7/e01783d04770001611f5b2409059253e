@@ -1,0 +1,429 @@
+package firmwarecomparingtool;
+
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
+
+
+public class Controller {
+	
+	protected Model m;
+	protected View v;
+	
+	public Controller(Model m, View v) {
+		super();
+		this.m = m;
+		this.v = v;
+		ActionLength aLength = new ActionLength();
+		ActionMd5 aMd5 = new ActionMd5();
+		ActionSha1 aSha1 = new ActionSha1();
+		ActionByte aByte = new ActionByte();
+		ActionPath aPath = new ActionPath();
+		ActionText aText = new ActionText();
+		ActionBase aBase = new ActionBase();
+		ActionBrowse aBrowse = new ActionBrowse();
+		ActionFind aFind = new ActionFind();
+		ActionImport aImport = new ActionImport();
+		
+		m.addObserver(aLength);
+		m.addObserver(aMd5);
+		m.addObserver(aSha1);
+		m.addObserver(aByte);
+		m.addObserver(aPath);
+		m.addObserver(aText);
+		m.addObserver(aBase);
+		m.addObserver(aBrowse);
+		m.addObserver(aFind);
+		m.addObserver(aImport);
+		
+		v.getbLength().setAction(aLength);
+		v.getbLength().setText("Length");
+		v.getbLength().setEnabled(false);
+		v.getbMd5().setAction(aMd5);
+		v.getbMd5().setText("MD5");
+		v.getbMd5().setEnabled(false);
+		v.getbSha1().setAction(aSha1);
+		v.getbSha1().setText("SHA1");
+		v.getbSha1().setEnabled(false);
+		v.getbByte().setAction(aByte);
+		v.getbByte().setText("Byte");
+		v.getbByte().setEnabled(false);
+		v.getbSuspect().setAction(aPath);
+		v.getbSuspect().setText("OK");
+		v.getbSuspect().setEnabled(true);
+		v.getbText().setAction(aText);
+		v.getbText().setText("Export Text");
+		v.getbText().setEnabled(false);
+		v.getbBase().setAction(aBase);
+		v.getbBase().setText("OK");
+		v.getbBase().setEnabled(true);
+		v.getbBrowse().setAction(aBrowse);
+		v.getbBrowse().setText("Browse");
+		v.getbBrowse().setEnabled(true);
+		v.getbFind().setAction(aFind);
+		v.getbFind().setText("Find");
+		v.getbFind().setEnabled(false);
+		v.getbImport().setAction(aImport);
+		v.getbImport().setText("Text Import");
+		v.getbImport().setEnabled(true);
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionLength extends AbstractAction implements Observer {
+		
+		public ActionLength() {
+			super();
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			v.gettMsg().append("=======================\n\nLenght Comparison Started\n\n=======================\n\n");
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				LengthComparison lC = new LengthComparison(it.next(),m.suspect);
+				lC.compare();
+				v.gettMsg().append(lC.msg);
+				//m.comparisons.add(lC);
+			}
+			
+		}
+
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Length Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionMd5 extends AbstractAction implements Observer {
+
+		public ActionMd5() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			v.gettMsg().append("=======================\n\nMD5 Comparison Started\n\n=======================\n\n");
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				Md5Comparison mC = new Md5Comparison(it.next(),m.suspect);
+				mC.compare();
+				v.gettMsg().append(mC.msg);
+				//m.comparisons.add(mC);
+
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("MD5 Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionSha1 extends AbstractAction implements Observer {
+
+		public ActionSha1() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			v.gettMsg().append("=======================\n\nSHA1 Comparison Started\n\n=======================\n\n");
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				Sha1Comparison sC = new Sha1Comparison(it.next(),m.suspect);
+				sC.compare();
+				v.gettMsg().append(sC.msg);
+				//m.comparisons.add(sC);
+
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("SHA1 Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionByte extends AbstractAction implements Observer {
+
+		public ActionByte() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			v.gettMsg().append("=======================\n\nByte Comparison Started\n\n=======================\n\n");
+			Iterator<Firmware> it = m.baseline.iterator();
+			while(it.hasNext()){
+				ByteComparison bC = new ByteComparison(it.next(),m.suspect);
+				bC.compare();
+				v.gettMsg().append(bC.msg);
+				m.comparisons.add(bC);
+				v.getbFind().setEnabled(true);
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Byte Comparison finished.\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionPath extends AbstractAction implements Observer {
+
+		public ActionPath() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				m.setSuspect(new Firmware(v.getpSuspect().getText()));
+				v.getbByte().setEnabled(true);
+				v.getbLength().setEnabled(true);
+				v.getbMd5().setEnabled(true);
+				v.getbSha1().setEnabled(true);
+				v.getbText().setEnabled(true);
+				v.gettMsg().setText("");
+				v.gettMsg().append("Suspect : " + v.getpSuspect().getText() + ".\n\n");
+				m.comparisons = new ArrayList<Comparison>();
+			} catch (IOException e1) {
+				v.getbByte().setEnabled(false);
+				v.getbLength().setEnabled(false);
+				v.getbMd5().setEnabled(false);
+				v.getbSha1().setEnabled(false);
+				v.getbText().setEnabled(false);
+				v.gettMsg().append("The suspect file couldn't be read.\n\n");
+				m.comparisons = new ArrayList<Comparison>();
+			}
+			
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Suspect : " + v.getpSuspect().getText() + ".\n\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionText extends AbstractAction implements Observer {
+
+		public ActionText() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				String path = m.suspect.path;
+				String [] split = path.split("/");
+				path = split[split.length -1];
+				
+				File f = new File("Exports/" + path + ".txt");
+				if (!f.exists()){
+					f.createNewFile();
+				}
+				FileWriter writer = new FileWriter(f);
+				writer.write(v.gettMsg().getText());
+				writer.close();
+				
+				Crypto.encrypt("452aa5b9d45c011e", f, f);
+				
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Text exported in Exports/" + m.suspect.path + ".txt \n\n");
+		}
+		
+	}	
+	
+	
+	@SuppressWarnings("serial")
+	public class ActionBase extends AbstractAction implements Observer {
+
+		public ActionBase() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				String ven = v.getnVendor().getText();
+				String mod = v.getnModel().getText();
+				String ver = v.getnVersion().getText();
+				List<Firmware> base = m.db.createBaseline(ven, mod, ver);
+				if (base.isEmpty()){
+					v.gettMsg().append("No matches in the baseline.\n\n");
+				} else {
+					m.setBaseline(base);
+					v.gettMsg().append("Baseline updated.\n\n");
+				}
+				
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				v.gettMsg().append("SQL error.\n\n");
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Baseline modified.\n\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionBrowse extends AbstractAction implements Observer {
+
+		public ActionBrowse() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String path;
+			JFileChooser chooser = new JFileChooser("Firmwares");
+			int returnValue = chooser.showOpenDialog(null);
+			if (returnValue == JFileChooser.APPROVE_OPTION){
+				path = chooser.getSelectedFile().getAbsolutePath();
+				path = path.replace("\\", "/");
+				try {
+					m.setSuspect(new Firmware(path));
+					v.getbByte().setEnabled(true);
+					v.getbLength().setEnabled(true);
+					v.getbMd5().setEnabled(true);
+					v.getbSha1().setEnabled(true);
+					v.getbText().setEnabled(true);
+					v.gettMsg().setText("");
+					v.gettMsg().append("Suspect : " + path + ".\n\n");
+					v.getpSuspect().setText(path);
+					m.comparisons = new ArrayList<Comparison>();
+				} catch (IOException e1) {
+					v.getbByte().setEnabled(false);
+					v.getbLength().setEnabled(false);
+					v.getbMd5().setEnabled(false);
+					v.getbSha1().setEnabled(false);
+					v.getbText().setEnabled(false);
+					v.gettMsg().append("The suspect file couldn't be read.\n\n");
+					m.comparisons = new ArrayList<Comparison>();
+				}
+			}
+			
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Suspect File chosen.\n\n");
+		}
+		
+	}
+	
+	@SuppressWarnings("serial")
+	public class ActionFind extends AbstractAction implements Observer {
+
+		public ActionFind() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Iterator<Comparison> it = m.comparisons.iterator();
+			Comparison current = it.next();
+			int score = current.score;
+			Comparison match = current;
+			
+			while (it.hasNext()){
+				current = (Comparison) it.next();
+				if (current.score < score){
+					match = current;
+				}
+			}
+			
+			v.gettMsg().append("The matching firmware seems to be : " + match.base.path + "\n\n");
+			if (score != 0){
+				v.gettMsg().append("And there are " + score + " byte modifications.\n\n");
+			}
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Suspect File identified.\n\n");
+		}
+		
+	}
+		
+	@SuppressWarnings("serial")
+	public class ActionImport extends AbstractAction implements Observer {
+
+		public ActionImport() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String path;
+			JFileChooser chooser = new JFileChooser("Exports");
+			int returnValue = chooser.showOpenDialog(null);
+			if (returnValue == JFileChooser.APPROVE_OPTION){
+				path = chooser.getSelectedFile().getName();
+				//path = path.replace("\\", "/");
+				File encrypted = chooser.getSelectedFile().getAbsoluteFile();
+				File decrypted = new File("decrypted");
+				Crypto.decrypt("452aa5b9d45c011e", encrypted, decrypted); //key = 182427 md5
+				try {
+					String toDisplay = "";
+					String line;
+					BufferedReader bReader = new BufferedReader(new FileReader(decrypted));
+					
+					while ((line = bReader.readLine()) != null){
+						toDisplay += "\n" + line;
+					}
+					
+					bReader.read();
+					bReader.close();
+					
+					v.gettMsg().setText(toDisplay);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			v.gettMsg().append("Text File Imported.\n\n");
+		}
+	}
+	
+}

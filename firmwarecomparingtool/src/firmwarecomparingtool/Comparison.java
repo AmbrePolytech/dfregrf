@@ -1,11 +1,34 @@
 package firmwarecomparingtool;
 
+/**
+ * The Comparison class manages all the comparisons
+ * @author Ambre
+ *
+ */
+
 public class Comparison {
+	
+	/**
+	 * Field description :
+	 * base : base Firmware which is trusted, part of the baseline
+	 * suspect : suspect Firmware image which needs to be compared to others.
+	 * value : Boolean which describes the success of the comparison, true if the Firmware are the same for this Comparison
+	 * msg : String message which will be displayed on the text area of the tool.
+	 * score : int representing the distance between the base and the suspect
+	 */
 	protected Firmware base;
 	protected Firmware suspect;
 	protected Boolean value;
 	protected String msg;
 	protected int score;
+	
+	/**
+	 * The Comparison constructor creates a new Comparison
+	 * @param b : base Firmware
+	 * @param s : suspect Firmware
+	 * The msg is set by default to say which Firmwares are compared
+	 * The score is set by default to 0
+	 */
 	
 	public Comparison(Firmware b, Firmware s){
 		this.base = b;
@@ -13,6 +36,11 @@ public class Comparison {
 		this.msg = "Comparison between the base : " + this.base.path + " and the suspect : " + this.suspect.path +".\n";
 		this.score = 0;
 	}
+	
+	/**
+	 * The compare method need to be implemented in the child Comparisons
+	 * It will perform the specific Comparison on the base and the suspect and update the msg and score
+	 */
 	
 	public void compare() {
 		

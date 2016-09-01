@@ -1,7 +1,9 @@
 package firmwarecomparingtool;
 
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,14 +12,38 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 
+/**
+ * The Controller class is part of the Model View Controller pattern used in the application
+ * It manages all the behaviour of the application and the interactions between the View and the Model
+ * It contains all the actions that graphical items will perform when activated
+ * @author Ambre Person
+ * The Observer pattern design is kept for future work but is not used in this implementation
+ */
+
 public class Controller {
+	
+	/**
+	 * Field description :
+	 * m : Model object containing the all the used data
+	 * v : View object containing all the graphical part of the application
+	 */
 	
 	protected Model m;
 	protected View v;
+	
+	/**
+	 * The Controller constructor makes the link between the Model and the View
+	 * @param m : Model containing all the used data
+	 * @param v : View containing all the graphical items
+	 * The constructor also attributes an action to each graphical item that need one
+	 * It set also some graphical parameters
+	 */
 	
 	public Controller(Model m, View v) {
 		super();
@@ -32,6 +58,7 @@ public class Controller {
 		ActionBase aBase = new ActionBase();
 		ActionBrowse aBrowse = new ActionBrowse();
 		ActionFind aFind = new ActionFind();
+		ActionImport aImport = new ActionImport();
 		
 		m.addObserver(aLength);
 		m.addObserver(aMd5);
@@ -42,6 +69,7 @@ public class Controller {
 		m.addObserver(aBase);
 		m.addObserver(aBrowse);
 		m.addObserver(aFind);
+		m.addObserver(aImport);
 		
 		v.getbLength().setAction(aLength);
 		v.getbLength().setText("Length");
@@ -59,7 +87,7 @@ public class Controller {
 		v.getbSuspect().setText("OK");
 		v.getbSuspect().setEnabled(true);
 		v.getbText().setAction(aText);
-		v.getbText().setText("Export Text");
+		v.getbText().setText("Text Export");
 		v.getbText().setEnabled(false);
 		v.getbBase().setAction(aBase);
 		v.getbBase().setText("OK");
@@ -70,7 +98,17 @@ public class Controller {
 		v.getbFind().setAction(aFind);
 		v.getbFind().setText("Find");
 		v.getbFind().setEnabled(false);
+		v.getbImport().setAction(aImport);
+		v.getbImport().setText("Text Import");
+		v.getbImport().setEnabled(true);
 	}
+	
+	/**
+	 * The ActionLength intern class represent the action performed when the Length button is pressed 
+	 * @author Ambre Person
+	 * The ActionLength create a new Comparison object for each Firmware present in the baseline and perform the length comparison between the base and the suspect Firmwares
+	 * The result of the comparison is displayed on the text area
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionLength extends AbstractAction implements Observer {
@@ -78,6 +116,7 @@ public class Controller {
 		public ActionLength() {
 			super();
 		}
+		
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -95,10 +134,17 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Length Comparison finished.\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionMd5 intern class represent the action performed when the MD5 button is pressed 
+	 * @author Ambre Person
+	 * The ActionMd5 create a new Comparison object for each Firmware present in the baseline and perform the MD5 comparison between the base and the suspect Firmwares
+	 * The result of the comparison is displayed on the text area
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionMd5 extends AbstractAction implements Observer {
@@ -122,10 +168,17 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("MD5 Comparison finished.\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionSha1 intern class represent the action performed when the SHA1 button is pressed 
+	 * @author Ambre Person
+	 * The ActionSha1 create a new Comparison object for each Firmware present in the baseline and perform the SHA1 comparison between the base and the suspect Firmwares
+	 * The result of the comparison is displayed on the text area
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionSha1 extends AbstractAction implements Observer {
@@ -149,10 +202,17 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("SHA1 Comparison finished.\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionByte intern class represent the action performed when the Byte button is pressed 
+	 * @author Ambre Person
+	 * The ActionByte create a new Comparison object for each Firmware present in the baseline and perform the Byte comparison between the base and the suspect Firmwares
+	 * The result of the comparison is displayed on the text area
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionByte extends AbstractAction implements Observer {
@@ -176,10 +236,18 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Byte Comparison finished.\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionPath intern class represent the action performed when the first OK button is pressed 
+	 * @author Ambre Person
+	 * The ActionPath create a new Firmware which will be the suspect Firmware using the path typed in the first text field
+	 * The path of the new suspect Firmware is displayed on the text area
+	 * This action enable all the comparison buttons to be pressed (which are disabled when no suspect is set)
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionPath extends AbstractAction implements Observer {
@@ -214,10 +282,18 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Suspect : " + v.getpSuspect().getText() + ".\n\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionText intern class represent the action performed when the Text Export button is pressed 
+	 * @author Ambre Person
+	 * The ActionText create a new File based on the content of the text area
+	 * This File is different for each different suspect used and represent a log file of the comparisons performed
+	 * This File is encrypted for security purposes and could only be decrypted and viewed through the application
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionText extends AbstractAction implements Observer {
@@ -229,13 +305,20 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				File f = new File("Exports/" + m.suspect.path + ".txt");
+				String path = m.suspect.path;
+				String [] split = path.split("/");
+				path = split[split.length -1];
+				
+				File f = new File("Exports/" + path + ".txt");
 				if (!f.exists()){
 					f.createNewFile();
 				}
 				FileWriter writer = new FileWriter(f);
 				writer.write(v.gettMsg().getText());
 				writer.close();
+				
+				Crypto.encrypt(m.getSecretKey(), f, f);
+				
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -243,11 +326,17 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Text exported in Exports/" + m.suspect.path + ".txt \n\n");
+			
 		}
 		
 	}	
 	
+	/**
+	 * The ActionBase intern class represent the action performed when the second OK button is pressed 
+	 * @author Ambre Person
+	 * The ActionBase create a new Baseline using the filters provided, the vendor name, the model name and the version number
+	 * The result of the baseline filtering is displayed on the text area
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionBase extends AbstractAction implements Observer {
@@ -278,10 +367,18 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Baseline modified.\n\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionBrowse intern class represent the action performed when the Browse button is pressed 
+	 * @author Ambre Person
+	 * The ActionBrowse create a new file chooser to pick the suspect Firmware that the user wants to compare to the rest of the baseline
+	 * The path of the new suspect Firmware is displayed on the text area
+	 * This action enable all the comparison buttons to be pressed (which are disabled when no suspect is set)
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionBrowse extends AbstractAction implements Observer {
@@ -293,7 +390,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String path;
-			JFileChooser chooser = new JFileChooser();
+			JFileChooser chooser = new JFileChooser("Firmwares");
 			int returnValue = chooser.showOpenDialog(null);
 			if (returnValue == JFileChooser.APPROVE_OPTION){
 				path = chooser.getSelectedFile().getAbsolutePath();
@@ -324,10 +421,17 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Suspect File chosen.\n\n");
+			
 		}
 		
 	}
+	
+	/**
+	 * The ActionFind intern class represents the action performed when the Find button is pressed 
+	 * @author Ambre Person
+	 * The ActionFind uses the list of comparisons of the model to choose which Firmware of the baseline is the closest to the suspect Firmware
+	 * This button is enabled only after a Byte comparison but a combination with other comparisons could be done in future work
+	 */
 	
 	@SuppressWarnings("serial")
 	public class ActionFind extends AbstractAction implements Observer {
@@ -358,9 +462,62 @@ public class Controller {
 
 		@Override
 		public void update(Observable arg0, Object arg1) {
-			v.gettMsg().append("Suspect File identified.\n\n");
+			
 		}
 		
+	}
+		
+	/**
+	 * The ActionImport intern class represent the action performed when the Text Import button is pressed 
+	 * @author Ambre Person
+	 * The ActionImport creates a new file chooser which allow the user to pick a previously exported text file
+	 * Exported Text files could only be imported and read in this way because they are encrypted
+	 */
+	
+	@SuppressWarnings("serial")
+	public class ActionImport extends AbstractAction implements Observer {
+
+		public ActionImport() {
+			super();
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser chooser = new JFileChooser("Exports");
+			int returnValue = chooser.showOpenDialog(null);
+			if (returnValue == JFileChooser.APPROVE_OPTION){
+				File encrypted = chooser.getSelectedFile().getAbsoluteFile();
+				String name = chooser.getSelectedFile().getName();
+				File decrypted = new File("decrypted");
+				Crypto.decrypt(m.getSecretKey(), encrypted, decrypted); //key = 182427 md5
+				try {
+					String toDisplay = "Imported Text File : " + name + "\n\n";
+					String line;
+					BufferedReader bReader = new BufferedReader(new FileReader(decrypted));
+					
+					while ((line = bReader.readLine()) != null){
+						toDisplay += "\n" + line;
+					}
+					
+					bReader.read();
+					bReader.close();
+					
+					v.gettMsg().setText(toDisplay);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					decrypted.delete();
+				}
+				
+			}
+			
+		}
+
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			
+		}
 	}
 	
 }

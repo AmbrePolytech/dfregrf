@@ -4,7 +4,12 @@ package firmwarecomparingtool;
 import java.awt.Dimension;
 
 import javax.swing.*;
-
+/**
+ * The View class is a part of the Model View Controller pattern used in the application
+ * It contains all the graphical objects (buttons, displays...)
+ * @author Ambre Person
+ *
+ */
 @SuppressWarnings("serial")
 public class View extends JFrame {
 	protected JButton bLength;
@@ -16,6 +21,9 @@ public class View extends JFrame {
 	protected JButton bBase;
 	protected JButton bBrowse;
 	protected JButton bFind;
+	protected JButton bImport;
+	
+	protected JLabel lFilter;
 	
 	protected JTextField pSuspect;
 	protected JTextField nVendor;
@@ -23,6 +31,7 @@ public class View extends JFrame {
 	protected JTextField nVersion;
 	
 	protected JTextArea tMsg;
+	
 
 	public View() {
 		super();
@@ -58,10 +67,14 @@ public class View extends JFrame {
 		this.bText = new JButton("Text Export");
 		this.bText.setText("Text Export");
 		this.bText.setEnabled(false);
+		this.bImport = new JButton("Text Import");
+		this.bImport.setText("Text Import");
+		this.bImport.setEnabled(true);
 		this.bFind = new JButton("Find");
 		this.bFind.setText("Find");
 		this.bFind.setEnabled(false);
-		this.tMsg = new JTextArea("Log\n\n",23,70);
+		this.lFilter = new JLabel("Baseline filters : ");
+		this.tMsg = new JTextArea("Log\n\n",23,79);
 		//this.tMsg.setPreferredSize(new Dimension(700,400));
 		this.tMsg.setEditable(false);
 		this.tMsg.setLineWrap(true);
@@ -79,6 +92,8 @@ public class View extends JFrame {
 		pan.add(this.bByte);
 		pan.add(this.bFind);
 		pan.add(this.bText);
+		pan.add(this.bImport);
+		pan.add(this.lFilter);
 		pan.add(this.nVendor);
 		pan.add(this.nModel);
 		pan.add(this.nVersion);
@@ -87,8 +102,16 @@ public class View extends JFrame {
 		pan.add(scroll);
 		
 		this.add(pan);
-		this.setSize(900, 500);
+		this.setSize(950, 500);
 		this.setVisible(true);
+	}
+
+	public JButton getbImport() {
+		return bImport;
+	}
+
+	public JLabel getlFilter() {
+		return lFilter;
 	}
 
 	public JButton getbFind() {

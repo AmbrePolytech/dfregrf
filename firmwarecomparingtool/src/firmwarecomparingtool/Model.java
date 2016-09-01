@@ -1,20 +1,61 @@
 package firmwarecomparingtool;
 
 import java.util.*;
-
+/**
+ * The Model class is part of the Model View Controller pattern used in the application
+ * It contains all the useful values to make all the comparisons
+ * @author Ambre Person
+ *
+ */
 public class Model extends Observable {
+	
+	/**
+	 * Field description : 
+	 * db : a Database object, representing the baseline
+	 * suspect : the suspect Firmware image that will be compared to the baseline
+	 * baseline : a List<Firmware> which describe the current used baseline 
+	 * comparisons : a List<Comparison> which sums up the comparisons that happened and their results
+	 * secretKey : a 16 bytes String key used to encrypt text log files
+	 */
 	
 	protected Database db;
 	protected Firmware suspect;
 	protected List<Firmware> baseline;
-	protected String log;
 	protected List<Comparison> comparisons;
+	protected String secretKey;
+	
+	/**
+	 * The Model constructor creates a new Database with its default configuration
+	 * It creates the baseline using the Database.createBaseline() call
+	 * It initialize the suspect as a new default Firmware
+	 * The secret key is initialized by default too, with an arbitrary value
+	 */
 	
 	public Model(){
 		this.db = new Database("jdbc:mysql://localhost/db_firmware","root","mysql");
 		this.baseline = this.db.createBaseline();
-		this.log = "";
 		this.suspect = new Firmware();
+		this.secretKey = "452aa5b9d45c011e";
+	}
+
+	public Database getDb() {
+		return db;
+	}
+
+	public Firmware getSuspect() {
+		return suspect;
+	}
+
+	public List<Firmware> getBaseline() {
+		return baseline;
+	}
+
+	public List<Comparison> getComparisons() {
+		return comparisons;
+	}
+
+	public String getSecretKey() {
+		return secretKey;
 	}
 
 	public void setComparisons(List<Comparison> comparisons) {
@@ -23,12 +64,6 @@ public class Model extends Observable {
 
 	public void setSuspect(Firmware suspect) {
 		this.suspect = suspect;
-	}
-
-	public void setLog(String log) {
-		this.log = this.log+log;
-		setChanged();
-		notifyObservers();
 	}
 
 	public void setBaseline(List<Firmware> baseline) {

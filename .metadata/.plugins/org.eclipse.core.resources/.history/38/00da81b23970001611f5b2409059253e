@@ -1,0 +1,8 @@
+package firmwarecomparingtool;
+
+public class Crypto {
+	private static final String ALGORITHM = "AES";
+
+	
+	
+}

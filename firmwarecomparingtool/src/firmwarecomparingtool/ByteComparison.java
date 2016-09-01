@@ -3,13 +3,31 @@ package firmwarecomparingtool;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * The ByteComparison class performs the Byte comparison of two Firmwares
+ * @author Ambre Person
+ *
+ */
+
 public class ByteComparison extends Comparison {
+	
+	/**
+	 * The ByteComparison constructor creates a new ByteComparison using two Firmwares, it is a Comparison child
+	 * @param b : base Firmware
+	 * @param s : suspect Firmware
+	 * The msg is modified to specify that the Comparison is a ByteComparison
+	 */
 	
 	public ByteComparison(Firmware b, Firmware s) {
 		super(b, s);
 		this.msg = "Byte "+ this.msg;
 	}
 
+	/**
+	 * The compare method compares the bytes of the base and the suspect Firmwares one by one and updates the msg with the result of the comparison (matching percentage)
+	 * It also updates the score value and the boolean value
+	 */
+	
 	@Override
 	public void compare() {
 		FileInputStream fB;

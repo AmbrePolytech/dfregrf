@@ -6,7 +6,25 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * The Firmware class represents all the caracteristics of a Firmware in the baseline Database
+ * @author Ambre Person
+ *
+ */
+
 public class Firmware {
+	
+	/**
+	 * Field description :
+	 * vendor : String representing the vendor name
+	 * model : String representing the PLC model
+	 * md5 : String representing the MD5 hash code
+	 * sha1 : String representing the SHA1 hash code
+	 * path : String representing the path of the image on the disk
+	 * version : String representing the version of the Firmware
+	 * length : int representing the length of the Firmware image 
+	 */
+	
 	protected String vendor;
 	protected String model;
 	protected String md5;
@@ -15,6 +33,9 @@ public class Firmware {
 	protected String version;
 	protected int length;
 
+	/**
+	 * The default Firmware constructor initializes all the fields to "" or 0
+	 */
 	
 	public Firmware(){
 		super();
@@ -26,6 +47,18 @@ public class Firmware {
 		this.version = "";
 		this.length = 0;
 	}
+	
+	/**
+	 * The Firmware constructor creates a new Firmware based on the different characteristics of a Firmware
+	 * @param ven : String of the vendor name
+	 * @param m : String of the PLC model name
+	 * @param md5 : String of the MD5 hash code
+	 * @param sha1 : String of the SHA1 hash code
+	 * @param p : String of the path of the Firmware image on the disk
+	 * @param ver : String of the version of the Firmware
+	 * @param l : int of the length of the Firmware image
+	 * This constructor is used to create the baseline because all the characteristics are available on the Database
+	 */
 	
 	public Firmware(String ven, String m, String md5, String sha1, String p, String ver, int l){
 		super();
@@ -39,6 +72,14 @@ public class Firmware {
 
 	}
 	
+	/**
+	 * The Firmware constructor creates a Firmware object using only its path
+	 * @param path : String of the path of the Firmware image on the disk
+	 * @throws IOException : throws IOException in case of bad reading of the Firmware image
+	 * This constructor set the vendor, model and version to "" and computes the MD5, SHA1 and length fields
+	 * This constructor is used to create the suspect Firmware object just using its path
+	 */
+	
 	public Firmware (String path) throws IOException {
 		super();
 		this.vendor = "";
@@ -49,11 +90,11 @@ public class Firmware {
 		try {
 			File f = new File(path);
 			MessageDigest md5Digest = MessageDigest.getInstance("MD5");
-			String md5Sum = getFileChecksum(md5Digest, f);
+			String md5Sum = Checksum.getFileChecksum(md5Digest, f);
 			this.md5 = md5Sum;
 			
 			MessageDigest sha1Digest = MessageDigest.getInstance("SHA");
-			String sha1Sum = getFileChecksum(sha1Digest, f);
+			String sha1Sum = Checksum.getFileChecksum(sha1Digest, f);
 			this.sha1 = sha1Sum;
 			
 			this.length = (int)f.length();
@@ -75,38 +116,7 @@ public class Firmware {
 				+ version + ", length=" + length + "]";
 	}
 	
-	@SuppressWarnings("unused")
-	private static String getFileChecksum(MessageDigest digest, File file) throws IOException
-	{
-	    //Get file input stream for reading the file content
-	    FileInputStream fis = new FileInputStream(file);
-	     
-	    //Create byte array to read data in chunks
-	    byte[] byteArray = new byte[1024];
-	    int bytesCount = 0; 
-	      
-	    //Read file data and update in message digest
-	    while ((bytesCount = fis.read(byteArray)) != -1) {
-	        digest.update(byteArray, 0, bytesCount);
-	    };
-	     
-	    //close the stream; We don't need it now.
-	    fis.close();
-	     
-	    //Get the hash's bytes
-	    byte[] bytes = digest.digest();
-	     
-	    //This bytes[] has bytes in decimal format;
-	    //Convert it to hexadecimal format
-	    StringBuilder sb = new StringBuilder();
-	    for(int i=0; i< bytes.length ;i++)
-	    {
-	        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-	    }
-	     
-	    //return complete hash
-	   return sb.toString();
-	}
+	
 
 	public void setVendor(String vendor) {
 		this.vendor = vendor;
@@ -135,7 +145,5 @@ public class Firmware {
 	public void setLength(int length) {
 		this.length = length;
 	}
-	
-	
 	
 }

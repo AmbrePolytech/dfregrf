@@ -1,0 +1,57 @@
+package firmwarecomparingtool;
+
+import java.util.*;
+/**
+ * The Model class 
+ * @author Ambre
+ *
+ */
+public class Model extends Observable {
+	
+	protected Database db;
+	protected Firmware suspect;
+	protected List<Firmware> baseline;
+	protected List<Comparison> comparisons;
+	protected String secretKey;
+	
+	public Model(){
+		this.db = new Database("jdbc:mysql://localhost/db_firmware","root","mysql");
+		this.baseline = this.db.createBaseline();
+		this.suspect = new Firmware();
+		this.secretKey = "452aa5b9d45c011e";
+	}
+
+	public Database getDb() {
+		return db;
+	}
+
+	public Firmware getSuspect() {
+		return suspect;
+	}
+
+	public List<Firmware> getBaseline() {
+		return baseline;
+	}
+
+	public List<Comparison> getComparisons() {
+		return comparisons;
+	}
+
+	public String getSecretKey() {
+		return secretKey;
+	}
+
+	public void setComparisons(List<Comparison> comparisons) {
+		this.comparisons = comparisons;
+	}
+
+	public void setSuspect(Firmware suspect) {
+		this.suspect = suspect;
+	}
+
+	public void setBaseline(List<Firmware> baseline) {
+		this.baseline = baseline;
+	}
+	
+	
+}

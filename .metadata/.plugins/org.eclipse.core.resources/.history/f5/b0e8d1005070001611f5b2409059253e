@@ -1,0 +1,29 @@
+package firmwarecomparingtool;
+
+/**
+ * The Md5Comparison class performs the MD5 comparison of two Firmwares
+ * @author Ambre Person
+ *
+ */
+
+public class Md5Comparison extends Comparison {
+
+	public Md5Comparison(Firmware b, Firmware s) {
+		super(b, s);
+		this.msg = "MD5 "+ this.msg;
+	}
+
+	@Override
+	public void compare() {
+		if (this.base.md5.equalsIgnoreCase(this.suspect.md5)){
+			this.setValue(true);
+			this.setMsg("There is no MD5 hash modification.\n\n");
+			this.score = 0;
+		} else {
+			this.setValue(false);
+			this.setMsg("There is a MD5 hash modification.\nBase : " + this.base.md5 +"\nSuspect : " + this.suspect.md5 + "\n\n");
+			this.score = 1;
+		}
+	}
+
+}
